@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.devocative</groupId>
+	<artifactId>dena</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0</version>
+
+	<name>${project.groupId}:${project.artifactId}</name>
+	<description>Parent pom providing dependency and plugin management for applications</description>
+	<url>https://github.com/mbizhani/Dena</url>
+
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>mbizhani</id>
+			<name>${project.owner}</name>
+			<email>mbizhani@gmail.com</email>
+			<organization>Devocative</organization>
+			<roles>
+				<role>Owner</role>
+				<role>Committer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:https://github.com/mbizhani/Dena.git</connection>
+		<developerConnection>scm:git:https://github.com/mbizhani/Dena.git</developerConnection>
+		<url>https://github.com/mbizhani/Dena</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<properties>
+		<lang.level>1.8</lang.level>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<jetty.port>8080</jetty.port>
+		<jetty.port.stop>9090</jetty.port.stop>
+		<jetty.context>/ctx</jetty.context>
+
+		<d.hibernate.ver>5.2.16.Final</d.hibernate.ver>
+		<d.spring.ver>5.0.5.RELEASE</d.spring.ver>
+
+		<d.slf4j.ver>1.7.25</d.slf4j.ver>
+		<d.servlet.ver>3.1.0</d.servlet.ver>
+		<d.wicket.ver>7.9.0</d.wicket.ver>
+		<d.groovy.ver>2.4.12</d.groovy.ver>
+		<d.commons.io.ver>2.6</d.commons.io.ver>
+
+		<p.jetty.ver>9.4.6.v20170531</p.jetty.ver>
+		<p.compiler.ver>3.7.0</p.compiler.ver>
+		<p.release.ver>2.5.3</p.release.ver>
+		<p.source.ver>3.0.1</p.source.ver>
+		<p.javadoc.ver>3.0.0</p.javadoc.ver>
+		<p.gpg.ver>1.6</p.gpg.ver>
+		<p.jar.ver>3.1.0</p.jar.ver>
+
+		<project.owner>Mehdi Bizhani</project.owner>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.devocative</groupId>
+				<artifactId>adroit</artifactId>
+				<version>2.1-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.devocative</groupId>
+				<artifactId>wickomp</artifactId>
+				<version>2.11-SNAPSHOT</version>
+			</dependency>
+
+			<!-- Misc -->
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${d.slf4j.ver}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${d.slf4j.ver}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.thoughtworks.xstream</groupId>
+				<artifactId>xstream</artifactId>
+				<version>1.4.9</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.9.5</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.jcraft</groupId>
+				<artifactId>jsch</artifactId>
+				<version>0.1.54</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.codehaus.groovy</groupId>
+				<artifactId>groovy-all</artifactId>
+				<version>${d.groovy.ver}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+				<version>2.3.23</version>
+			</dependency>
+
+			<!-- Commons -->
+
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>1.9.3</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${d.commons.io.ver}</version>
+			</dependency>
+
+			<!-- Wicket -->
+
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-core</artifactId>
+				<version>${d.wicket.ver}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-extensions</artifactId>
+				<version>${d.wicket.ver}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-native-websocket-javax</artifactId>
+				<version>${d.wicket.ver}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-spring</artifactId>
+				<version>${d.wicket.ver}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${d.servlet.ver}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- Hibernate -->
+
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${d.hibernate.ver}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-envers</artifactId>
+				<version>${d.hibernate.ver}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-c3p0</artifactId>
+				<version>${d.hibernate.ver}</version>
+			</dependency>
+
+
+			<!-- Spring -->
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${d.spring.ver}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${d.spring.ver}</version>
+			</dependency>
+
+
+			<!-- TEST -->
+
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>2.4.1</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- Compiler -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${p.compiler.ver}</version>
+					<configuration>
+						<source>${lang.level}</source>
+						<target>${lang.level}</target>
+						<encoding>UTF-8</encoding>
+						<debug>true</debug>
+						<optimize>true</optimize>
+					</configuration>
+				</plugin>
+
+				<!-- Jetty -->
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>${p.jetty.ver}</version>
+					<configuration>
+						<useTestScope>true</useTestScope>
+						<webAppSourceDirectory>src/test/webapp</webAppSourceDirectory>
+						<httpConnector>
+							<port>${jetty.port}</port>
+						</httpConnector>
+
+						<stopKey>Dena</stopKey>
+						<stopPort>${jetty.port.stop}</stopPort>
+					</configuration>
+				</plugin>
+
+				<!-- Source -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${p.source.ver}</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<!-- Jar -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${p.jar.ver}</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							</manifest>
+							<manifestEntries>
+								<Built-By>${project.owner}</Built-By>
+							</manifestEntries>
+						</archive>
+					</configuration>
+				</plugin>
+
+				<!-- Release -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${p.release.ver}</version>
+					<configuration>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+						<useReleaseProfile>false</useReleaseProfile>
+						<releaseProfiles>release</releaseProfiles>
+						<goals>deploy</goals>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<!-- JavaDoc -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>${p.javadoc.ver}</version>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<!-- GPG -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${p.gpg.ver}</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>localRelease</id>
+			<distributionManagement>
+				<snapshotRepository>
+					<id>localNexus</id>
+					<url>http://localnexus:8080/nexus/content/repositories/snapshots/</url>
+				</snapshotRepository>
+				<repository>
+					<id>localNexus</id>
+					<url>http://localnexus:8080/nexus/content/repositories/releases/</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+
+		<profile>
+			<id>Oracle</id>
+
+			<dependencies>
+
+				<dependency>
+					<groupId>com.oracle</groupId>
+					<artifactId>ojdbc7</artifactId>
+					<version>12.1.0.2</version>
+					<scope>test</scope>
+				</dependency>
+
+			</dependencies>
+		</profile>
+
+	</profiles>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
+
+</project>

@@ -6,7 +6,7 @@
 	<groupId>org.devocative</groupId>
 	<artifactId>dena</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0</version>
+	<version>sivar</version>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Parent pom providing dependency and plugin management for applications</description>
@@ -49,6 +49,8 @@
 		<jetty.port.stop>9090</jetty.port.stop>
 		<jetty.context>/ctx</jetty.context>
 
+    <d.demeter.ver>1.1-SNAPSHOT</d.demeter.ver>
+
 		<d.hibernate.ver>5.2.16.Final</d.hibernate.ver>
 		<d.spring.ver>5.0.5.RELEASE</d.spring.ver>
 
@@ -65,12 +67,15 @@
 		<p.javadoc.ver>3.0.0</p.javadoc.ver>
 		<p.gpg.ver>1.6</p.gpg.ver>
 		<p.jar.ver>3.1.0</p.jar.ver>
+		<p.war.ver>3.0.0</p.war.ver>
 
 		<project.owner>Mehdi Bizhani</project.owner>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
+
+      <!-- Devocative -->
 			<dependency>
 				<groupId>org.devocative</groupId>
 				<artifactId>adroit</artifactId>
@@ -82,6 +87,45 @@
 				<artifactId>wickomp</artifactId>
 				<version>2.11-SNAPSHOT</version>
 			</dependency>
+
+			<dependency>
+				<groupId>org.devocative</groupId>
+				<artifactId>demeter-common</artifactId>
+				<version>${d.demeter.ver}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.devocative</groupId>
+				<artifactId>demeter-service</artifactId>
+				<version>${d.demeter.ver}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.devocative</groupId>
+				<artifactId>demeter-web</artifactId>
+				<version>${d.demeter.ver}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.devocative</groupId>
+				<artifactId>demeter-core</artifactId>
+				<version>${d.demeter.ver}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.devocative</groupId>
+				<artifactId>demeter-module</artifactId>
+				<version>${d.demeter.ver}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.devocative</groupId>
+				<artifactId>demeter-module</artifactId>
+				<version>${d.demeter.ver}</version>
+				<type>test-jar</type>
+				<scope>test</scope>
+			</dependency>
+
 
 			<!-- Misc -->
 
@@ -125,6 +169,12 @@
 				<groupId>org.freemarker</groupId>
 				<artifactId>freemarker</artifactId>
 				<version>2.3.23</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.mchange</groupId>
+				<artifactId>c3p0</artifactId>
+				<version>0.9.5.2</version>
 			</dependency>
 
 			<!-- Commons -->
@@ -230,6 +280,23 @@
 	</dependencyManagement>
 
 	<build>
+		<plugins>
+			<!-- Source -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${p.source.ver}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
 		<pluginManagement>
 			<plugins>
 				<!-- Compiler -->
@@ -254,28 +321,18 @@
 					<configuration>
 						<useTestScope>true</useTestScope>
 						<webAppSourceDirectory>src/test/webapp</webAppSourceDirectory>
+
+						<webApp>
+							<contextPath>${jetty.context}</contextPath>
+						</webApp>
+
 						<httpConnector>
 							<port>${jetty.port}</port>
 						</httpConnector>
 
-						<stopKey>Dena</stopKey>
+						<stopKey>JSTOP</stopKey>
 						<stopPort>${jetty.port.stop}</stopPort>
 					</configuration>
-				</plugin>
-
-				<!-- Source -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-source-plugin</artifactId>
-					<version>${p.source.ver}</version>
-					<executions>
-						<execution>
-							<id>attach-sources</id>
-							<goals>
-								<goal>jar-no-fork</goal>
-							</goals>
-						</execution>
-					</executions>
 				</plugin>
 
 				<!-- Jar -->
@@ -292,6 +349,17 @@
 								<Built-By>${project.owner}</Built-By>
 							</manifestEntries>
 						</archive>
+					</configuration>
+				</plugin>
+
+				<!-- War -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${p.war.ver}</version>
+
+					<configuration>
+						<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
 					</configuration>
 				</plugin>
 
@@ -315,7 +383,7 @@
 	<profiles>
 
 		<profile>
-			<id>release</id>
+			<id>Release</id>
 			<build>
 				<plugins>
 					<!-- JavaDoc -->
@@ -354,7 +422,7 @@
 		</profile>
 
 		<profile>
-			<id>localRelease</id>
+			<id>LocalRelease</id>
 			<distributionManagement>
 				<snapshotRepository>
 					<id>localNexus</id>
@@ -369,16 +437,12 @@
 
 		<profile>
 			<id>Oracle</id>
-
 			<dependencies>
-
 				<dependency>
 					<groupId>com.oracle</groupId>
 					<artifactId>ojdbc7</artifactId>
 					<version>12.1.0.2</version>
-					<scope>test</scope>
 				</dependency>
-
 			</dependencies>
 		</profile>
 

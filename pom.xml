@@ -3,15 +3,15 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>org.devocative</groupId>
 	<artifactId>dena</artifactId>
 	<packaging>pom</packaging>
-	<version>sivar</version>
+	<version>001-SNAPSHOT</version>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Parent pom providing dependency and plugin management for applications</description>
 	<url>https://github.com/mbizhani/Dena</url>
-
 
 	<licenses>
 		<license>
@@ -49,16 +49,12 @@
 		<jetty.port.stop>9090</jetty.port.stop>
 		<jetty.context>/ctx</jetty.context>
 
-    <d.demeter.ver>1.1-SNAPSHOT</d.demeter.ver>
-
 		<d.hibernate.ver>5.2.16.Final</d.hibernate.ver>
 		<d.spring.ver>5.0.5.RELEASE</d.spring.ver>
 
 		<d.slf4j.ver>1.7.25</d.slf4j.ver>
 		<d.servlet.ver>3.1.0</d.servlet.ver>
 		<d.wicket.ver>7.9.0</d.wicket.ver>
-		<d.groovy.ver>2.4.12</d.groovy.ver>
-		<d.commons.io.ver>2.6</d.commons.io.ver>
 
 		<p.jetty.ver>9.4.6.v20170531</p.jetty.ver>
 		<p.compiler.ver>3.7.0</p.compiler.ver>
@@ -74,58 +70,6 @@
 
 	<dependencyManagement>
 		<dependencies>
-
-      <!-- Devocative -->
-			<dependency>
-				<groupId>org.devocative</groupId>
-				<artifactId>adroit</artifactId>
-				<version>2.1-SNAPSHOT</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.devocative</groupId>
-				<artifactId>wickomp</artifactId>
-				<version>2.11-SNAPSHOT</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.devocative</groupId>
-				<artifactId>demeter-common</artifactId>
-				<version>${d.demeter.ver}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.devocative</groupId>
-				<artifactId>demeter-service</artifactId>
-				<version>${d.demeter.ver}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.devocative</groupId>
-				<artifactId>demeter-web</artifactId>
-				<version>${d.demeter.ver}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.devocative</groupId>
-				<artifactId>demeter-core</artifactId>
-				<version>${d.demeter.ver}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.devocative</groupId>
-				<artifactId>demeter-module</artifactId>
-				<version>${d.demeter.ver}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.devocative</groupId>
-				<artifactId>demeter-module</artifactId>
-				<version>${d.demeter.ver}</version>
-				<type>test-jar</type>
-				<scope>test</scope>
-			</dependency>
-
 
 			<!-- Misc -->
 
@@ -150,7 +94,7 @@
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
-				<version>2.9.5</version>
+				<version>2.9.7</version>
 			</dependency>
 
 			<dependency>
@@ -162,13 +106,13 @@
 			<dependency>
 				<groupId>org.codehaus.groovy</groupId>
 				<artifactId>groovy-all</artifactId>
-				<version>${d.groovy.ver}</version>
+				<version>2.4.15</version>
 			</dependency>
 
 			<dependency>
 				<groupId>org.freemarker</groupId>
 				<artifactId>freemarker</artifactId>
-				<version>2.3.23</version>
+				<version>2.3.28</version>
 			</dependency>
 
 			<dependency>
@@ -176,6 +120,7 @@
 				<artifactId>c3p0</artifactId>
 				<version>0.9.5.2</version>
 			</dependency>
+
 
 			<!-- Commons -->
 
@@ -188,8 +133,9 @@
 			<dependency>
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
-				<version>${d.commons.io.ver}</version>
+				<version>2.6</version>
 			</dependency>
+
 
 			<!-- Wicket -->
 
@@ -223,6 +169,7 @@
 				<version>${d.servlet.ver}</version>
 				<scope>provided</scope>
 			</dependency>
+
 
 			<!-- Hibernate -->
 
@@ -261,7 +208,6 @@
 
 
 			<!-- TEST -->
-
 
 			<dependency>
 				<groupId>junit</groupId>

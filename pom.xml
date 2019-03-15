@@ -6,7 +6,7 @@
 	<groupId>org.devocative</groupId>
 	<artifactId>dena</artifactId>
 	<packaging>pom</packaging>
-	<version>002-SNAPSHOT</version>
+	<version>001-SNAPSHOT</version>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Parent pom providing dependency and plugin management for applications</description>
@@ -56,12 +56,12 @@
 		<d.wicket.ver>7.9.0</d.wicket.ver>
 
 		<p.jetty.ver>9.4.6.v20170531</p.jetty.ver>
-		<p.compiler.ver>3.7.0</p.compiler.ver>
+		<p.compiler.ver>3.8.0</p.compiler.ver>
 		<p.release.ver>2.5.3</p.release.ver>
 		<p.source.ver>3.0.1</p.source.ver>
 		<p.javadoc.ver>3.1.0</p.javadoc.ver>
 		<p.gpg.ver>1.6</p.gpg.ver>
-		<p.jar.ver>3.1.0</p.jar.ver>
+		<p.jar.ver>3.1.1</p.jar.ver>
 		<p.war.ver>3.0.0</p.war.ver>
 
 		<project.owner>Mehdi Bizhani</project.owner>
@@ -240,23 +240,38 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!-- Compiler -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${p.compiler.ver}</version>
+				<configuration>
+					<source>${lang.level}</source>
+					<target>${lang.level}</target>
+					<encoding>UTF-8</encoding>
+					<debug>true</debug>
+					<optimize>true</optimize>
+				</configuration>
+			</plugin>
+
+			<!-- Release -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>${p.release.ver}</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<useReleaseProfile>false</useReleaseProfile>
+					<releaseProfiles>release</releaseProfiles>
+					<goals>deploy</goals>
+				</configuration>
+			</plugin>
+
 		</plugins>
 
 		<pluginManagement>
 			<plugins>
-				<!-- Compiler -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${p.compiler.ver}</version>
-					<configuration>
-						<source>${lang.level}</source>
-						<target>${lang.level}</target>
-						<encoding>UTF-8</encoding>
-						<debug>true</debug>
-						<optimize>true</optimize>
-					</configuration>
-				</plugin>
 
 				<!-- Jetty -->
 				<plugin>
@@ -305,19 +320,6 @@
 
 					<configuration>
 						<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
-					</configuration>
-				</plugin>
-
-				<!-- Release -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-release-plugin</artifactId>
-					<version>${p.release.ver}</version>
-					<configuration>
-						<autoVersionSubmodules>true</autoVersionSubmodules>
-						<useReleaseProfile>false</useReleaseProfile>
-						<releaseProfiles>release</releaseProfiles>
-						<goals>deploy</goals>
 					</configuration>
 				</plugin>
 

@@ -6,7 +6,7 @@
 	<groupId>org.devocative</groupId>
 	<artifactId>dena</artifactId>
 	<packaging>pom</packaging>
-	<version>001</version>
+	<version>002-SNAPSHOT</version>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Parent pom providing dependency and plugin management for applications</description>
@@ -37,7 +37,7 @@
 		<connection>scm:git:https://github.com/mbizhani/Dena.git</connection>
 		<developerConnection>scm:git:https://github.com/mbizhani/Dena.git</developerConnection>
 		<url>https://github.com/mbizhani/Dena</url>
-		<tag>dena-001</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<properties>
